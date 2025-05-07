@@ -1,13 +1,22 @@
 export default class Player {
-  constructor(name) {
+  static fromPlayer(oldPlayer) {
+    return new Player(
+      oldPlayer.name,
+      oldPlayer.score,
+      oldPlayer.scoreHistory,
+      oldPlayer.total
+    );
+  }
+  constructor(name, score, scoreHistory, total) {
     this.name = name;
-    this.score = 0;
-    this.scoreHistory = [];
-    this.total = 0;
+    this.score = score ?? 0;
+    this.scoreHistory = scoreHistory ?? [];
+    this.total = total ?? 0;
   }
 
   addScore = (score) => {
     this.score += score;
+    console.log(`${this.name} scored ${score}`);
   };
 
   completeRound = () => {
