@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { Box } from "@mui/material";
+import { useState } from "react";
+import AddPlayer from "./AddPlayer";
+const App = () => {
+  const [players, setPlayers] = useState([]);
 
-function App() {
+  const onPlayerAdd = (name) => {
+    setPlayers([...players, name]);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box sx={{ margin: 2 }}>
+      <AddPlayer onPlayerAdd={onPlayerAdd} />
+      <ul>
+        {players.map((player) => (
+          <li>{player}</li>
+        ))}
+      </ul>
+    </Box>
   );
-}
+};
 
 export default App;
