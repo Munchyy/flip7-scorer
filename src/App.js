@@ -1,5 +1,5 @@
 import { Box, Button } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AddPlayer from "./AddPlayer";
 import Player from "./classes/Player";
 import ScoreTable from "./ScoreTable";
