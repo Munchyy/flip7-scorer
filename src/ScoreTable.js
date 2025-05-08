@@ -21,7 +21,7 @@ const ScoreTable = ({ players, roundNumber, onAddScore }) => {
             <TableCell>Current Round</TableCell>
             <TableCell>Total</TableCell>
             {new Array(roundNumber).fill(0).map((_, i) => (
-              <TableCell>Round {i + 1}</TableCell>
+              <TableCell>Round {roundNumber - i}</TableCell>
             ))}
           </TableRow>
         </TableHead>
@@ -50,7 +50,7 @@ const ScoreTable = ({ players, roundNumber, onAddScore }) => {
                 )}
               </TableCell>
               <TableCell>{player.total}</TableCell>
-              {player.scoreHistory.map((score) => (
+              {[...player.scoreHistory].reverse().map((score) => (
                 <TableCell>{score || "BUST"}</TableCell>
               ))}
             </TableRow>

@@ -22,9 +22,9 @@ const App = () => {
       new Player("Max", "#88f686"),
       new Player("Char", "#eb77ed"),
       new Player("Livvy", "#40E0D0"),
-      new Player("Charlie", "#ff0000"),
+      new Player("Charlie", "#CB0404"),
       new Player("Rob", "#027a2b"),
-      new Player("Jack", "#000B58"),
+      new Player("Jack", "#002884"),
       new Player("Anji", "#FEBA17"),
       new Player("Zoe", "#8B5DFF"),
     ]);

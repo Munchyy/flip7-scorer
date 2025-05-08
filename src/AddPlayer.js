@@ -5,7 +5,7 @@ import { MuiColorInput } from "mui-color-input";
 
 const AddPlayer = ({ onPlayerAdd }) => {
   const [name, setName] = useState("");
-  const [colorValue, setColorValue] = useState("");
+  const [colorValue, setColorValue] = useState("#ffffff");
   const textFieldRef = useRef(null);
   const onAdd = (e) => {
     e?.preventDefault();
@@ -30,7 +30,12 @@ const AddPlayer = ({ onPlayerAdd }) => {
         value={colorValue}
         onChange={(newColor) => setColorValue(newColor)}
       />
-      <IconButton type="submit" size="large" disabled={!(colorValue && name)}>
+      <IconButton
+        type="submit"
+        size="large"
+        color="primary"
+        disabled={!(colorValue && name)}
+      >
         <AddIcon fontSize="large" />
       </IconButton>
     </form>

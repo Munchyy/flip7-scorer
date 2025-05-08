@@ -19,7 +19,7 @@ const AddScoreModal = ({ label, onSetScore, onCancel }) => {
           component: "form",
           onSubmit: (event) => {
             event.preventDefault();
-            onSetScore(score);
+            onSetScore(score || 0);
           },
         },
       }}
