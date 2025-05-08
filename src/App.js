@@ -4,16 +4,23 @@ import AddPlayer from "./AddPlayer";
 import Player from "./classes/Player";
 import ScoreTable from "./ScoreTable";
 import AddScoreModal from "./AddScoreModal";
+import JSConfetti from "js-confetti";
+import WinnerDialog from "./WinnerDialog";
+const jsConfetti = new JSConfetti();
+
 const App = () => {
   const [players, setPlayers] = useState([]);
   const [roundNumber, setRoundNumber] = useState(0);
   const [scoreModalPlayer, setScoreModalPlayer] = useState(null);
   const [adding, setAdding] = useState(true);
-
   const onCompleteRound = () => {
     setRoundNumber(roundNumber + 1);
+    let won = false;
     players.forEach((player) => {
       player.completeRound();
+      if (!won && player.total >= 200) {
+        jsConfetti.addConfetti();
+      }
     });
   };
 
@@ -55,6 +62,7 @@ const App = () => {
     setPlayers(newPlayerList);
     setScoreModalPlayer(null);
   };
+  const winners = players.filter((player) => player.total >= 200);
   return (
     <>
       <Box sx={{ margin: 2 }}>
@@ -99,6 +107,7 @@ const App = () => {
           onCancel={onScoreCancel}
         />
       )}
+      {winners.length > 0 && <WinnerDialog winners={winners} />}
     </>
   );
 };
