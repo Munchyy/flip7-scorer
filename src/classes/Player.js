@@ -2,13 +2,15 @@ export default class Player {
   static fromPlayer(oldPlayer) {
     return new Player(
       oldPlayer.name,
+      oldPlayer.color,
       oldPlayer.score,
       oldPlayer.scoreHistory,
       oldPlayer.total
     );
   }
-  constructor(name, score, scoreHistory, total) {
+  constructor(name, color, score, scoreHistory, total) {
     this.name = name;
+    this.color = color;
     this.score = score ?? 0;
     this.scoreHistory = scoreHistory ?? [];
     this.total = total ?? 0;

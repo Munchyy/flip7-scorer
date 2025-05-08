@@ -28,6 +28,8 @@ const AddScoreModal = ({ label, onSetScore, onCancel }) => {
       <DialogContent>
         <Box sx={{ padding: "4px" }}>
           <TextField
+            inputRef={(input) => input && input.focus()}
+            autoFocus
             type="number"
             label="Score"
             value={score}

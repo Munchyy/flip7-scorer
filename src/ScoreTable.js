@@ -7,9 +7,11 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  useTheme,
 } from "@mui/material";
 import CalculateIcon from "@mui/icons-material/Calculate";
 const ScoreTable = ({ players, roundNumber, onAddScore }) => {
+  const theme = useTheme();
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: "100vw" }} aria-label="simple table">
@@ -25,17 +27,25 @@ const ScoreTable = ({ players, roundNumber, onAddScore }) => {
         </TableHead>
         <TableBody>
           {players.map((player, playerIndex) => (
-            <TableRow>
-              <TableCell sx={{ fontWeight: "bold", fontSize: "1rem" }}>
+            <TableRow
+              sx={{
+                backgroundColor: player.color,
+                color: theme.palette.getContrastText(player.color),
+              }}
+            >
+              <TableCell
+                sx={{ color: "inherit", fontWeight: "bold", fontSize: "1rem" }}
+              >
                 {player.name?.toUpperCase() ?? "undefined"}
               </TableCell>
-              <TableCell>
+              <TableCell sx={{ color: "inherit" }}>
                 {player.score || (
                   <IconButton
-                    color="secondary"
+                    size="large"
+                    color="inherit"
                     onClick={() => onAddScore(playerIndex)}
                   >
-                    <CalculateIcon />
+                    <CalculateIcon fontSize="large" />
                   </IconButton>
                 )}
               </TableCell>

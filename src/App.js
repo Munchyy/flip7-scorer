@@ -8,6 +8,8 @@ const App = () => {
   const [players, setPlayers] = useState([]);
   const [roundNumber, setRoundNumber] = useState(0);
   const [scoreModalPlayer, setScoreModalPlayer] = useState(null);
+  const [adding, setAdding] = useState(true);
+
   const onCompleteRound = () => {
     setRoundNumber(roundNumber + 1);
     players.forEach((player) => {
@@ -15,8 +17,23 @@ const App = () => {
     });
   };
 
-  const onPlayerAdd = (name) => {
-    setPlayers([...players, new Player(name)]);
+  const addPresetPlayers = () => {
+    setPlayers([
+      new Player("Max", "#88f686"),
+      new Player("Char", "#eb77ed"),
+      new Player("Livvy", "#40E0D0"),
+      new Player("Charlie", "#ff0000"),
+      new Player("Rob", "#027a2b"),
+      new Player("Jack", "#000B58"),
+      new Player("Anji", "#FEBA17"),
+      new Player("Zoe", "#8B5DFF"),
+    ]);
+    setAdding(false);
+  };
+
+  const onPlayerAdd = (name, color) => {
+    setPlayers([...players, new Player(name, color)]);
+    console.log({ name, color });
   };
 
   const onAddScore = (playerIndex) => {
@@ -41,9 +58,34 @@ const App = () => {
   return (
     <>
       <Box sx={{ margin: 2 }}>
-        <AddPlayer onPlayerAdd={onPlayerAdd} />
-        <hr />
-        <Button onClick={onCompleteRound}>complete round</Button>
+        {adding && (
+          <>
+            <AddPlayer onPlayerAdd={onPlayerAdd} />
+            <Box sx={{ padding: "4px" }} />
+            {!players.length ? (
+              <Button
+                size="large"
+                variant="contained"
+                onClick={addPresetPlayers}
+              >
+                Add Preset Players
+              </Button>
+            ) : (
+              <Button
+                size="large"
+                variant="contained"
+                onClick={() => setAdding(false)}
+              >
+                Finish adding
+              </Button>
+            )}
+            <hr />
+          </>
+        )}
+        <Button variant="contained" size="large" onClick={onCompleteRound}>
+          complete round
+        </Button>
+        <Box sx={{ padding: "12px" }} />
         <ScoreTable
           players={players}
           roundNumber={roundNumber}
