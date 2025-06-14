@@ -28,6 +28,7 @@ const AddScoreModal = ({ label, onSetScore, onCancel }) => {
       <DialogContent>
         <Box sx={{ padding: "4px" }}>
           <TextField
+            inputProps={{ inputmode: "decimal" }}
             inputRef={(input) => input && input.focus()}
             autoFocus
             type="number"
