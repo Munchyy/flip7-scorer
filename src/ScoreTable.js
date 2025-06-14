@@ -49,7 +49,9 @@ const ScoreTable = ({ players, roundNumber, onAddScore }) => {
                   </IconButton>
                 )}
               </TableCell>
-              <TableCell>{player.total}</TableCell>
+              <TableCell sx={{ color: "inherit" }}>
+                {player.total}
+              </TableCell>
               {[...player.scoreHistory].reverse().map((score) => (
                 <TableCell>{score || "BUST"}</TableCell>
               ))}
